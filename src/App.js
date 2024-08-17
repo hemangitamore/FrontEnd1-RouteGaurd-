@@ -13,7 +13,7 @@ import {
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import DemoProduct from './pages/DemoProduct';
-
+import AdminRegistration from './pages/AdminRegistration';
 import {useDocTitle} from './components/CustomHook';
 import ScrollToTop from './components/ScrollToTop';
 import CustomerRegistration from './components/CustomerRegistration';
@@ -51,7 +51,8 @@ function App() {
     
             <Route path="/AdminLogin" element={<AdminLogin />} />
             <Route path="/superAdmin/login" element={<SuperAdminLogin />} />
-           
+            <Route path="/login" element={<SuperAdminLogin />} />
+            <Route path="/admin/registration" element={<AdminRegistration />} />
 
             <Route path="/driver-details" element={<DriverDetails/>} />
             <Route path="/CustomerDetails" element={<CustomerDetails/>} />
