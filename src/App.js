@@ -23,6 +23,7 @@ import DriverDetails from './pages/DriverDetails';
 import CustomerDetails from './pages/CustomerDetails';
 import SuperAdminLogin from './components/SuperAdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
+import VehiclesDashBoard from './pages/VehiclesDashBoard';
 function App() {
   useEffect(() => {
     const aos_init = () => {
@@ -62,6 +63,7 @@ function App() {
             
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/AdminDashBoard" element={<AdminDashboard/>} />
+            <Route path="/VehiclesDashBoard" element={<VehiclesDashBoard/>} />
                 
                 
                 {/* Add other routes here */}
