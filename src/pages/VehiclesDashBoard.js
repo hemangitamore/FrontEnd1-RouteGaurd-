@@ -6,17 +6,37 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 //import './VehicleDetails.css';
-
+const vehicleNumberPattern = /^[A-Z]{2,3}\d{2,4}(-\d{4})?$/;
 const vehicleSchema = Yup.object().shape({
-    vehicleNumber: Yup.string().required('Vehicle number is required'),
-    vehicleName: Yup.string().required('Vehicle name is required'),
-    vehicleModelNumber: Yup.string().required('Vehicle model number is required'),
-    puc: Yup.string().required('PUC is required'),
-    accidentHistory: Yup.string().required('Accident history is required'),
-    carryingCapacity: Yup.string().required('Carrying capacity is required'),
+    
+    vehicleNumber: Yup.string()
+    .required('Vehicle number is required')
+    .matches(vehicleNumberPattern, 'Vehicle number must be in the format: XX12-1234 or XX1234'),
+
+
+    vehicleName: Yup.string()
+        .required('Vehicle name is required')
+        .min(2, 'Vehicle name must be at least 2 characters long')
+        .max(50, 'Vehicle name cannot exceed 50 characters'),
+
+    vehicleModelNumber: Yup.string()
+        .required('Vehicle model number is required')
+        .min(2, 'Vehicle model number must be at least 2 characters long')
+        .max(50, 'Vehicle model number cannot exceed 50 characters'),
+
+    puc: Yup.string()
+        .required('PUC is required')
+        .oneOf(['Valid', 'Expired'], 'PUC must be either "Valid" or "Expired"'),
+
+    accidentHistory: Yup.string()
+        .required('Accident history is required'),
+
+    carryingCapacity: Yup.string()
+        .required('Carrying capacity is required')
+        .matches(/^[0-9]+kg$/, 'Carrying capacity must be a number followed by "kg"'),
 });
 
-const VehicleDetails = () => {
+const VehiclesDashBoard = () => {
     const [rowData, setRowData] = useState([]);
     const [selectedVehicle, setSelectedVehicle] = useState(null);
 
@@ -112,43 +132,43 @@ const VehicleDetails = () => {
                     {({ errors, touched }) => (
                         <Form>
                             <div className="form-group">
-                                <label>Vehicle Number</label>
-                                <Field name="vehicleNumber" />
+                                <label htmlFor="vehicleNumber">Vehicle Number</label>
+                                <Field name="vehicleNumber" className="form-control" />
                                 {errors.vehicleNumber && touched.vehicleNumber ? (
                                     <div className="error">{errors.vehicleNumber}</div>
                                 ) : null}
                             </div>
                             <div className="form-group">
-                                <label>Vehicle Name</label>
-                                <Field name="vehicleName" />
+                                <label htmlFor="vehicleName">Vehicle Name</label>
+                                <Field name="vehicleName" className="form-control" />
                                 {errors.vehicleName && touched.vehicleName ? (
                                     <div className="error">{errors.vehicleName}</div>
                                 ) : null}
                             </div>
                             <div className="form-group">
-                                <label>Vehicle Model Number</label>
-                                <Field name="vehicleModelNumber" />
+                                <label htmlFor="vehicleModelNumber">Vehicle Model Number</label>
+                                <Field name="vehicleModelNumber" className="form-control" />
                                 {errors.vehicleModelNumber && touched.vehicleModelNumber ? (
                                     <div className="error">{errors.vehicleModelNumber}</div>
                                 ) : null}
                             </div>
                             <div className="form-group">
-                                <label>PUC</label>
-                                <Field name="puc" />
+                                <label htmlFor="puc">PUC</label>
+                                <Field name="puc" className="form-control" />
                                 {errors.puc && touched.puc ? (
                                     <div className="error">{errors.puc}</div>
                                 ) : null}
                             </div>
                             <div className="form-group">
-                                <label>Accident History</label>
-                                <Field name="accidentHistory" />
+                                <label htmlFor="accidentHistory">Accident History</label>
+                                <Field name="accidentHistory" className="form-control" />
                                 {errors.accidentHistory && touched.accidentHistory ? (
                                     <div className="error">{errors.accidentHistory}</div>
                                 ) : null}
                             </div>
                             <div className="form-group">
-                                <label>Carrying Capacity</label>
-                                <Field name="carryingCapacity" />
+                                <label htmlFor="carryingCapacity">Carrying Capacity</label>
+                                <Field name="carryingCapacity" className="form-control" />
                                 {errors.carryingCapacity && touched.carryingCapacity ? (
                                     <div className="error">{errors.carryingCapacity}</div>
                                 ) : null}
@@ -181,5 +201,4 @@ const VehicleDetails = () => {
     );
 };
 
-export default VehicleDetails;
-
+export default VehiclesDashBoard;
