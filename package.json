@@ -4,13 +4,22 @@
   "private": true,
   "homepage": "https://mld.ng/",
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^5.16.7",
+    "@mui/material": "^5.16.7",
+    "@mui/styled-engine": "^5.16.6",
+    "@mui/system": "^5.16.7",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "ag-grid-community": "^32.1.0",
+    "ag-grid-react": "^32.1.0",
     "aos": "^3.0.0-beta.6",
     "axios": "^0.24.0",
     "bootstrap": "^5.3.3",
     "emailjs-com": "^3.2.0",
+    "formik": "^2.4.6",
     "notiflix": "^3.2.2",
     "react": "^17.0.2",
     "react-bootstrap": "^2.10.4",
@@ -19,7 +28,8 @@
     "react-router-hash-link": "^2.4.3",
     "react-scripts": "5.0.0",
     "react-transition-group": "^4.4.2",
-    "web-vitals": "^2.1.2"
+    "web-vitals": "^2.1.2",
+    "yup": "^1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

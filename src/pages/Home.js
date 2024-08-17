@@ -11,13 +11,16 @@ import Services from '../components/Services';
 const Home = () => {
     return (
         <>
-            <Hero />
-            <Intro />
-            <Services />
-            <Portfolio />
-            <Clients />
-            <Cta/>
-            <Footer />
+           <Hero />
+   
+           
+         
+           
+   <Portfolio />
+   <Clients />
+  
+   <Cta/>
+   <Footer />
         </>
 
     )

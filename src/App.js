@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import "aos/dist/aos.css";
 import './index.css';
+//import AdminDashboard from './pages/AdminDashboard';
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -14,7 +16,13 @@ import DemoProduct from './pages/DemoProduct';
 
 import {useDocTitle} from './components/CustomHook';
 import ScrollToTop from './components/ScrollToTop';
-
+import CustomerRegistration from './components/CustomerRegistration';
+import DriverRegistration from './components/DriverRegistration';
+import AdminLogin from './components/AdminLogin';
+import DriverDetails from './pages/DriverDetails'; 
+import CustomerDetails from './pages/CustomerDetails';
+import SuperAdminLogin from './components/SuperAdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
 function App() {
   useEffect(() => {
     const aos_init = () => {
@@ -34,15 +42,31 @@ function App() {
 
   return (
     <>
-      <Router>
-        <ScrollToTop>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/contact" element={<Contact />} />
+       <Router>
+            <Routes>
+                
+                <Route path="/" element={<Home />} />
+             <Route path="/contact" element={<Contact />} />
             <Route path="/get-demo" element={<DemoProduct />} /> 
-          </Routes>
-        </ScrollToTop>
-      </Router>
+    
+            <Route path="/AdminLogin" element={<AdminLogin />} />
+            <Route path="/superAdmin/login" element={<SuperAdminLogin />} />
+           
+
+            <Route path="/driver-details" element={<DriverDetails/>} />
+            <Route path="/CustomerDetails" element={<CustomerDetails/>} />
+           
+            <Route path="/customer/register" element={<CustomerRegistration />} />
+            
+            <Route exact={true} path="/driver/register" element={<DriverRegistration />} />
+            
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/AdminDashBoard" element={<AdminDashboard/>} />
+                
+                
+                {/* Add other routes here */}
+            </Routes>
+        </Router>
     </>
   );
 }
