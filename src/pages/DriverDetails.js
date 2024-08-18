@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 import { addDriver } from '../services/user-services';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
@@ -36,6 +37,13 @@ const driverSchema = Yup.object().shape({
 const DriverDetails = () => {
     const [rowData, setRowData] = useState([]);
     const [selectedDriver, setSelectedDriver] = useState(null);
+//=================================
+    useEffect(() => {
+        // Fetch customer data from API 
+        axios.get('/api/drivers')
+            .then(response => setRowData(response.data))
+            .catch(error => console.error('Error fetching customer data:', error));
+    }, []);
 
     const columns = [
         { headerName: 'Phone Number', field: 'phoneNumber', sortable: true, filter: true },
@@ -45,16 +53,23 @@ const DriverDetails = () => {
         { headerName: 'DOB', field: 'dob', sortable: true, filter: true },
         { headerName: 'Address', field: 'address', sortable: true, filter: true },
         { headerName: 'Nationality', field: 'nationality', sortable: true, filter: true },
-        {
-            headerName: 'Actions',
-            field: 'actions',
+        {            
+            headerName: "Actions",
             width: 200,
-            cellRendererFramework: (params) => (
-                <span className="actions">
-                    <button onClick={() => handleEdit(params.data)}>Edit</button>
-                    <button onClick={() => handleDelete(params.data)}>Delete</button>
-                </span>
-            ),
+            cellRenderer: (params) => {
+                return (
+                <div className="actions d-flex justify-content-start gap-3">
+                    <i
+                    className="bi bi-pencil-fill"
+                    onClick={() => handleEdit(params.data)}
+                    ></i>
+                    <i
+                    className="bi bi-trash3-fill"
+                    onClick={() => handleDelete(params.data)}
+                    ></i>
+                </div>
+                );
+            },
         },
     ];
 
@@ -195,7 +210,7 @@ const DriverDetails = () => {
                             />
                             <ErrorMessage name="nationality" component="div" className="error" />
                         </div>
-                        <div className="form-group">
+                        <div className="form-group d-flex justify-content-center">
                             <button type="submit" className="submit-button">
                                 {selectedDriver ? 'Update Driver' : 'Add Driver'}
                             </button>
@@ -225,3 +240,4 @@ const DriverDetails = () => {
 };
 
 export default DriverDetails;
+

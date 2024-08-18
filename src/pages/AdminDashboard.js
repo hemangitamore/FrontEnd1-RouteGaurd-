@@ -46,6 +46,18 @@ const AdminDashboard = () => {
               </div>
             </Card.Body>
           </Card>
+          <Card className="mb-3">
+            <Card.Body>
+              <Card.Title>Manage Customers</Card.Title>
+              <Card.Text>View, add, update, and delete trip details.</Card.Text>
+              <div className="d-flex justify-content-start">
+              <Link to="/CustomerDetails">
+                <Button variant="primary">Manage Customers</Button>
+              </Link>
+              </div>
+            </Card.Body>
+          </Card>
+          
         </div>
       </div>
     </Layout>
