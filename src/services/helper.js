@@ -136,3 +136,37 @@ export const deleteTrip = async (tripId) => {
     }));
   };
   
+
+  export const validateAdminRegistration = ({ username, role, dob, address, password, confirmPassword }) => {
+    if (!username) {
+        return 'Username is required';
+    }
+    if (!role) {
+        return 'Role is required';
+    }
+    if (!dob) {
+        return 'Date of Birth is required';
+    }
+    if (!address) {
+        return 'Address is required';
+    }
+    if (!password) {
+        return 'Password is required';
+    }
+    if (password.length < 8) {
+        return 'Password must be at least 8 characters';
+    }
+    if (password !== confirmPassword) {
+        return 'Passwords do not match';
+    }
+    return null;
+};
+
+export const registerAdmin = async (adminDetails) => {
+  try {
+      const response = await myaxios.post('http://localhost:8080/api/admins/register', adminDetails);
+      return response.data; // Return response data if needed
+  } catch (error) {
+      throw new Error('Admin registration failed. Please try again.');
+  }
+};

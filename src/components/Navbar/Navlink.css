@@ -16,7 +16,9 @@
       font-family: 'Peralta', cursive;
       
   }
-  
+  .text-underline:hover{
+text-decoration: underline;
+  }
   
   @media (max-width: 768px) {
     .navbar-nav {
@@ -27,5 +29,3 @@
       padding: 10px 0;
     }
   }
-  
-    

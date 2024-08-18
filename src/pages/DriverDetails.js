@@ -6,6 +6,7 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import './DriverDetails.css';
+import Layout from '../components/Layout/Layout';
 
 // Enhanced Yup validation schema
 const driverSchema = Yup.object().shape({
@@ -108,118 +109,119 @@ const DriverDetails = () => {
     };
 
     return (
-        <div className="driver-details">
-            <h2>Driver Details</h2>
+        <Layout> <div className="driver-details">
+        <h2>Driver Details</h2>
 
-            {/* Form Card */}
-            <div className="form-card">
-                <h3>{selectedDriver ? 'Edit Driver' : 'Add Driver'}</h3>
-                <Formik
-                    initialValues={{
-                        phoneNumber: selectedDriver?.phoneNumber || '',
-                        adharNumber: selectedDriver?.adharNumber || '',
-                        panNumber: selectedDriver?.panNumber || '',
-                        driverName: selectedDriver?.driverName || '',
-                        dob: selectedDriver?.dob || '',
-                        address: selectedDriver?.address || '',
-                        nationality: selectedDriver?.nationality || '',
-                    }}
-                    validationSchema={driverSchema}
-                    onSubmit={handleSubmit}
-                    enableReinitialize
-                >
-                    {() => (
-                        <Form>
-                            <div className="form-group">
-                                <label htmlFor="phoneNumber">Phone Number</label>
-                                <Field
-                                    name="phoneNumber"
-                                    id="phoneNumber"
-                                    className="form-control"
-                                />
-                                <ErrorMessage name="phoneNumber" component="div" className="error" />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="adharNumber">Adhar Number</label>
-                                <Field
-                                    name="adharNumber"
-                                    id="adharNumber"
-                                    className="form-control"
-                                />
-                                <ErrorMessage name="adharNumber" component="div" className="error" />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="panNumber">Pan Number</label>
-                                <Field
-                                    name="panNumber"
-                                    id="panNumber"
-                                    className="form-control"
-                                />
-                                <ErrorMessage name="panNumber" component="div" className="error" />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="driverName">Driver Name</label>
-                                <Field
-                                    name="driverName"
-                                    id="driverName"
-                                    className="form-control"
-                                />
-                                <ErrorMessage name="driverName" component="div" className="error" />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="dob">DOB</label>
-                                <Field
-                                    name="dob"
-                                    id="dob"
-                                    type="date"
-                                    className="form-control"
-                                />
-                                <ErrorMessage name="dob" component="div" className="error" />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="address">Address</label>
-                                <Field
-                                    name="address"
-                                    id="address"
-                                    className="form-control"
-                                />
-                                <ErrorMessage name="address" component="div" className="error" />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="nationality">Nationality</label>
-                                <Field
-                                    name="nationality"
-                                    id="nationality"
-                                    className="form-control"
-                                />
-                                <ErrorMessage name="nationality" component="div" className="error" />
-                            </div>
-                            <div className="form-group">
-                                <button type="submit" className="submit-button">
-                                    {selectedDriver ? 'Update Driver' : 'Add Driver'}
-                                </button>
-                            </div>
-                        </Form>
-                    )}
-                </Formik>
-            </div>
+        {/* Form Card */}
+        <div className="form-card">
+            <h3>{selectedDriver ? 'Edit Driver' : 'Add Driver'}</h3>
+            <Formik
+                initialValues={{
+                    phoneNumber: selectedDriver?.phoneNumber || '',
+                    adharNumber: selectedDriver?.adharNumber || '',
+                    panNumber: selectedDriver?.panNumber || '',
+                    driverName: selectedDriver?.driverName || '',
+                    dob: selectedDriver?.dob || '',
+                    address: selectedDriver?.address || '',
+                    nationality: selectedDriver?.nationality || '',
+                }}
+                validationSchema={driverSchema}
+                onSubmit={handleSubmit}
+                enableReinitialize
+            >
+                {() => (
+                    <Form>
+                        <div className="form-group">
+                            <label htmlFor="phoneNumber">Phone Number</label>
+                            <Field
+                                name="phoneNumber"
+                                id="phoneNumber"
+                                className="form-control"
+                            />
+                            <ErrorMessage name="phoneNumber" component="div" className="error" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="adharNumber">Adhar Number</label>
+                            <Field
+                                name="adharNumber"
+                                id="adharNumber"
+                                className="form-control"
+                            />
+                            <ErrorMessage name="adharNumber" component="div" className="error" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="panNumber">Pan Number</label>
+                            <Field
+                                name="panNumber"
+                                id="panNumber"
+                                className="form-control"
+                            />
+                            <ErrorMessage name="panNumber" component="div" className="error" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="driverName">Driver Name</label>
+                            <Field
+                                name="driverName"
+                                id="driverName"
+                                className="form-control"
+                            />
+                            <ErrorMessage name="driverName" component="div" className="error" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="dob">DOB</label>
+                            <Field
+                                name="dob"
+                                id="dob"
+                                type="date"
+                                className="form-control"
+                            />
+                            <ErrorMessage name="dob" component="div" className="error" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="address">Address</label>
+                            <Field
+                                name="address"
+                                id="address"
+                                className="form-control"
+                            />
+                            <ErrorMessage name="address" component="div" className="error" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="nationality">Nationality</label>
+                            <Field
+                                name="nationality"
+                                id="nationality"
+                                className="form-control"
+                            />
+                            <ErrorMessage name="nationality" component="div" className="error" />
+                        </div>
+                        <div className="form-group">
+                            <button type="submit" className="submit-button">
+                                {selectedDriver ? 'Update Driver' : 'Add Driver'}
+                            </button>
+                        </div>
+                    </Form>
+                )}
+            </Formik>
+        </div>
 
-            {/* Table Card */}
-            <div className="table-card">
-                <div
-                    className="ag-theme-alpine"
-                    style={{ height: 400, width: '100%' }}
-                >
-                    <AgGridReact
-                        columnDefs={columns}
-                        rowData={rowData}
-                        domLayout="autoHeight"
-                        suppressRowClickSelection={true}
-                    />
-                </div>
+        {/* Table Card */}
+        <div className="table-card">
+            <div
+                className="ag-theme-alpine"
+                style={{ height: 400, width: '100%' }}
+            >
+                <AgGridReact
+                    columnDefs={columns}
+                    rowData={rowData}
+                    domLayout="autoHeight"
+                    suppressRowClickSelection={true}
+                />
             </div>
         </div>
-    );
+    </div>
+</Layout>
+    )   
 };
 
 export default DriverDetails;

@@ -16,19 +16,20 @@
      e.preventDefault();
      setLoading(true);
      setError('');
- 
+
      try {
-       const response = await axios.post('/api/admin/login', { username, password });
+       const response = await axios.post('http://localhost:8080/api/admins/Adminlogin', {email: username, password });
  
        if (response.status === 200) {
-         // Redirect to admin dashboard
-         navigate('/admin/dashboard');
+        localStorage.setItem("token",response.data.token)
+        localStorage.setItem("role",response.data.role)
+        setLoading(false);
+         navigate('/admin-dashBoard');
        }
      } catch (error) {
-       setError('Invalid username or password');
-     } finally {
-       setLoading(false);
-     }
+      setLoading(false);
+       setError('Invalid email or password');
+     } 
    };
  
    return (

@@ -11,14 +11,9 @@ import Services from '../components/Services';
 const Home = () => {
     return (
         <>
-           <Hero />
-   
-           
-         
-           
-   <Portfolio />
+           <Hero />            
+   {/* <Portfolio /> */}
    <Clients />
-  
    <Cta/>
    <Footer />
         </>

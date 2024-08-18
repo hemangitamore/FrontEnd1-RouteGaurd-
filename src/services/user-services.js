@@ -136,4 +136,16 @@ export const addCustomers = (addCustomers) => {
       });
   };
   
-  
+
+// export const registerAdmin = (adminData) => {
+//     return myaxios.post('/admins/register', adminData);
+// };
+
+export const registerAdmin = (adminData) => {
+  return myaxios.post('/api/admins/register', adminData) // Adjust the path as needed
+      .then(response => response.data)
+      .catch(error => {
+          console.error('Error registering admin:', error);
+          throw error;
+      });
+};

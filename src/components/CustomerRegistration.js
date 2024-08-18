@@ -3,6 +3,7 @@ import { TextField, Button, Container, Typography, Card, CardContent } from '@mu
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { registerCustomer } from '../services/user-services';
+import Layout from './Layout/Layout';
 
 const validationSchema = Yup.object({
   companyName:   Yup.string()
@@ -49,123 +50,129 @@ const CustomerRegistration = () => {
   };
 
   return (
-    <Container maxWidth="sm" className="registration-container" data-aos="zoom-in-down">
-      <Card sx={{ padding: 2 }}>
-        <CardContent>
-          <Typography variant="h4" gutterBottom>
-            Customer Registration
-          </Typography>
+    <Layout> 
+      <Container maxWidth="sm" className="registration-container" data-aos="zoom-in-down">
+    <Card sx={{ padding: 2 }}>
+      <CardContent>
+        <Typography variant="h4" gutterBottom>
+          Customer Registration
+        </Typography>
 
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={handleSubmit}
-          >
-            {({ isSubmitting, errors }) => (
-              <Form>
-                {errors.submit && <Typography color="error">{errors.submit}</Typography>}
-                
-                <Field
-                  as={TextField}
-                  label="Company Name"
-                  name="companyName"
-                  fullWidth
-                  margin="normal"
-                  required
-                  helperText={<ErrorMessage name="companyName" component="div" style={{ color: 'red' }} />}
-                />
-                
-                <Field
-                  as={TextField}
-                  label="Company Address"
-                  name="companyAddress"
-                  fullWidth
-                  margin="normal"
-                  required
-                  helperText={<ErrorMessage name="companyAddress" component="div" style={{ color: 'red' }} />}
-                />
-                
-                <Field
-                  as={TextField}
-                  label="GST Number"
-                  name="gstNumber"
-                  fullWidth
-                  margin="normal"
-                  required
-                  helperText={<ErrorMessage name="gstNumber" component="div" style={{ color: 'red' }} />}
-                />
-                
-                <Field
-                  as={TextField}
-                  label="Phone Number"
-                  name="phoneNumber"
-                  fullWidth
-                  margin="normal"
-                  required
-                  helperText={<ErrorMessage name="phoneNumber" component="div" style={{ color: 'red' }} />}
-                />
-                
-                <Field
-                  as={TextField}
-                  label="Email"
-                  name="email"
-                  type="email"
-                  fullWidth
-                  margin="normal"
-                  required
-                  helperText={<ErrorMessage name="email" component="div" style={{ color: 'red' }} />}
-                />
-                
-                <Field
-                  as={TextField}
-                  label="Established Date"
-                  name="establishedDate"
-                  type="date"
-                  fullWidth
-                  margin="normal"
-                  InputLabelProps={{ shrink: true }}
-                  required
-                  helperText={<ErrorMessage name="establishedDate" component="div" style={{ color: 'red' }} />}
-                />
-                
-                <Field
-                  as={TextField}
-                  label="Created By"
-                  name="createdBy"
-                  fullWidth
-                  margin="normal"
-                  required
-                  helperText={<ErrorMessage name="createdBy" component="div" style={{ color: 'red' }} />}
-                />
-                
-                <Field
-                  as={TextField}
-                  label="Created At"
-                  name="createdAt"
-                  type="datetime-local"
-                  fullWidth
-                  margin="normal"
-                  InputLabelProps={{ shrink: true }}
-                  required
-                  helperText={<ErrorMessage name="createdAt" component="div" style={{ color: 'red' }} />}
-                />
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ isSubmitting, errors }) => (
+            <Form>
+              {errors.submit && <Typography color="error">{errors.submit}</Typography>}
+              
+              <Field
+                as={TextField}
+                label="Company Name"
+                name="companyName"
+                fullWidth
+                margin="normal"
+                required
+                helperText={<ErrorMessage name="companyName" component="div" style={{ color: 'red' }} />}
+              />
+              
+              <Field
+                as={TextField}
+                label="Company Address"
+                name="companyAddress"
+                fullWidth
+                margin="normal"
+                required
+                helperText={<ErrorMessage name="companyAddress" component="div" style={{ color: 'red' }} />}
+              />
+              
+              <Field
+                as={TextField}
+                label="GST Number"
+                name="gstNumber"
+                fullWidth
+                margin="normal"
+                required
+                helperText={<ErrorMessage name="gstNumber" component="div" style={{ color: 'red' }} />}
+              />
+              
+              <Field
+                as={TextField}
+                label="Phone Number"
+                name="phoneNumber"
+                fullWidth
+                margin="normal"
+                required
+                helperText={<ErrorMessage name="phoneNumber" component="div" style={{ color: 'red' }} />}
+              />
+              
+              <Field
+                as={TextField}
+                label="Email"
+                name="email"
+                type="email"
+                fullWidth
+                margin="normal"
+                required
+                helperText={<ErrorMessage name="email" component="div" style={{ color: 'red' }} />}
+              />
+              
+              <Field
+                as={TextField}
+                label="Established Date"
+                name="establishedDate"
+                type="date"
+                fullWidth
+                margin="normal"
+                InputLabelProps={{ shrink: true }}
+                required
+                helperText={<ErrorMessage name="establishedDate" component="div" style={{ color: 'red' }} />}
+              />
+              
+              <Field
+                as={TextField}
+                label="Created By"
+                name="createdBy"
+                fullWidth
+                margin="normal"
+                required
+                helperText={<ErrorMessage name="createdBy" component="div" style={{ color: 'red' }} />}
+              />
+              
+              <Field
+                as={TextField}
+                label="Created At"
+                name="createdAt"
+                type="datetime-local"
+                fullWidth
+                margin="normal"
+                InputLabelProps={{ shrink: true }}
+                required
+                helperText={<ErrorMessage name="createdAt" component="div" style={{ color: 'red' }} />}
+              />
+<div className='d-flex justify-content-center'>
 
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  disabled={isSubmitting}
-                  sx={{ marginTop: 2 }}
-                >
-                  {isSubmitting ? 'Registering...' : 'Register'}
-                </Button>
-              </Form>
-            )}
-          </Formik>
-        </CardContent>
-      </Card>
-    </Container>
+
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+               className='w-25'
+                disabled={isSubmitting}
+                sx={{ marginTop: 2 }}
+              >
+                {isSubmitting ? 'Registering...' : 'Register'}
+              </Button>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </CardContent>
+    </Card>
+  </Container>
+  </Layout>
+   
   );
 };
 

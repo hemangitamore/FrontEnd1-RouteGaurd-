@@ -201,14 +201,18 @@ const SuperAdminLogin = () => {
 
   const handleLogin = async (values, { setSubmitting }) => {
     try {
-      const response = await axios.post('http://localhost:8080/api/superadmin/login', values);
-      const { token } = response.data;
-      
+      const response = await axios.post('http://localhost:8080/api/superadmins/SuperAdminlogin', values);
+      const { token,role } = response.data;
+      console.log(response,"response")
       // Store the token in localStorage
-      localStorage.setItem('superAdminToken', token);
-      
-      // Navigate to the dashboard
-      navigate('/dashboard');
+      if(token){
+        localStorage.setItem('token', token);
+        localStorage.setItem("role",role);
+      }
+    if(response.status===200){
+      navigate('/admin/registration');
+    }
+     
     } catch (error) {
       console.error('Login failed:', error);
       alert('Login failed! Please check your credentials.');
@@ -218,7 +222,8 @@ const SuperAdminLogin = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className='bg-Img'>
+<div className="login-container">
       <div className="login-box">
         <h2>Super Admin Login</h2>
         <Formik
@@ -248,22 +253,25 @@ const SuperAdminLogin = () => {
                 />
                 <ErrorMessage name="password" component="div" className="error" />
               </div>
-              <button type="submit" disabled={isSubmitting}>
+              <button className="btn btn-dark mb-2" type="submit" disabled={isSubmitting}>
                 {isSubmitting ? 'Logging in...' : 'Login'}
               </button>
-              <div className="link-container">
+              {/* <div className="link-container">
                 <button
                   type="button"
+                  className="btn btn-primary mb-2"
                   onClick={() => navigate('/admin/registration')}
                 >
                   Register as Admin
                 </button>
-              </div>
+              </div> */}
             </Form>
           )}
         </Formik>
       </div>
     </div>
+    </div>
+    
   );
 };
 
