@@ -30,12 +30,12 @@ const NavLinks = () => {
           <Nav.Link className="text-underline" as={NavLink} to="/service">
             Services
           </Nav.Link>
-          {role == "superAdmin" && (  <Nav.Link className="text-underline" as={NavLink} to="/admin-dashBoard">
+          {token && (  <Nav.Link className="text-underline" as={NavLink} to="/admin-dashBoard">
             Admin Dashboard
           </Nav.Link>)}
           {role && token && (
             <NavDropdown title="Registration" id="registration-dropdown">
-              {role == "superAdmin" && (
+              {role == "superAdmin"  && (
                 <NavDropdown.Item className="text-underline" as={NavLink} to="/admin/registration">
                   Admin Registration
                 </NavDropdown.Item>

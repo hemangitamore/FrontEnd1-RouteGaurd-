@@ -37,15 +37,15 @@ export const registerCustomer = async (customerDetails) => {
     }
   };
 
-  // Add a new driver
-export const addDriver = (driverData) => {
-    return myaxios.post('/drivers/register', driverData)
-        .then(response => response.data)
-        .catch(error => {
-            console.error('Error adding driver:', error);
-            throw error;
-        });
+  export const addDriver = async (driverData) => {
+    try {
+        const response = await myaxios.post('/drivers/register', driverData);
+        return response.data; // Return response data if needed
+    } catch (error) {
+        throw new Error('Error adding driver. Please try again.');
+    }
 };
+
 
 // Add a new vehicle
 export const addVehicle = (vehicleData) => {

@@ -24,6 +24,7 @@ import Intro from "./components/Intro";
 import Services from "./components/Services";
 import PrivateRoute from "./routes/PrivateRoute";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import TripDetails from "./pages/TripDetails";
 function App() {
   useEffect(() => {
     const aos_init = () => {
@@ -60,7 +61,7 @@ function App() {
 
             <Route path="/driver-details" element={<DriverDetails />} />
             <Route path="/CustomerDetails" element={<CustomerDetails />} />
-
+            <Route path="/trips" element={<TripDetails />} />
             <Route
               path="/customer/register"
               element={<CustomerRegistration />}
