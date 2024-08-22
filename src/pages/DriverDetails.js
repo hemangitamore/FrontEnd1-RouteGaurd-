@@ -9,6 +9,8 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import "./DriverDetails.css";
 import Layout from "../components/Layout/Layout";
+//axios.defaults.withCredentials = true;
+
 
 const driverSchema = Yup.object().shape({
   phoneNumber: Yup.string()
@@ -126,8 +128,7 @@ const DriverDetails = () => {
   const handleSubmit = (values, { resetForm }) => {
     if (selectedDriver) {
       // Update driver using Axios with JWT token
-      axios
-        .put(`http://localhost:8080/api/drivers/${selectedDriver.id}`, values, {
+      axios.put(`http://localhost:8080/api/drivers/${selectedDriver.id}`, values, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -162,18 +163,33 @@ const DriverDetails = () => {
   };
 
   const handleDelete = async (driver) => {
-    console.log(driver.data)
-    // if (window.confirm("Are you sure you want to delete this driver?")) {
-      const response = await axios.delete(
-        `https://localhost:8080/api/drivers/${driver.data.id}`
-      );
-    const data= await response.data;
-      console.log(response,"resposne")
+    try {
+      const response = await axios.delete(`http://localhost:8080/api/drivers/${driver.data.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (response.status === 200) {
-        getDriverList();
+        setRowData((prevData) => prevData.filter((d) => d.id !== driver.data.id));
       }
-    // }
-  };
+    } catch (error) {
+      console.error("Error deleting driver:", error);
+    }
+  }
+
+  // const handleDelete = async (driver) => {
+  //   console.log(driver.data)
+  //   // if (window.confirm("Are you sure you want to delete this driver?")) {
+  //     const response = await axios.delete(
+  //       `http://localhost:8080/api/drivers/${driver.data.id}`
+  //     );
+  //   const data= await response.data;
+  //     console.log(response,"resposne")
+  //     if (response.status === 200) {
+  //       getDriverList();
+  //     }
+  //   // }
+  // };
 
   return (
     <Layout>

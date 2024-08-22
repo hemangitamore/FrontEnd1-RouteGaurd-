@@ -68,7 +68,6 @@ function App() {
             />
 
             <Route
-              exact={true}
               path="/driver/register"
               element={<DriverRegistration />}
             />
